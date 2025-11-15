@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import api from "../api/axios";
+import api from "../api/Axios";
 
 
 export const AuthContext = createContext()
@@ -26,9 +26,9 @@ export const AuthProvider = ({children})=>{
             localStorage.setItem("token",token)
             localStorage.setItem("user",JSON.stringify(user))
             setUser(user)
-            res.json({success:true})
+            return {success:true}
         }catch(err){
-            res.json({success:false,error:err.response?.data?.error || "Registration failed"})
+            return {success:false,error:err.response?.data?.error || "Registration failed"}
         }
     }
 
@@ -40,9 +40,9 @@ export const AuthProvider = ({children})=>{
             localStorage.setItem("token",token)
             localStorage.setItem("user",JSON.stringify(user))
             setUser(user)
-            res.json({success:true})
+            return {success:true}
         }catch(err){
-            res.json({success:false,error:err.response?.data?.error || "Login failed"})
+            return {success:false,error:err.response?.data?.error || "Registration failed"}
         }
     }
 
@@ -56,6 +56,5 @@ export const AuthProvider = ({children})=>{
         <AuthContext.Provider value={{user, register, login, logout, loading}}>
             {children}
         </AuthContext.Provider>
-
     )
 }
