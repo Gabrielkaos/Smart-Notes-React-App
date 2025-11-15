@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Tasks from "./pages/Notes";
+import Notes from "./pages/Notes";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { AuthProvider } from "./context/AuthContext";
@@ -15,7 +15,7 @@ function App() {
           <Route path="/notes"
           element={
             <ProtectedRoute>
-              <Tasks/>
+              <Notes/>
             </ProtectedRoute>
           }/>
           <Route path="/" element={<Navigate to="/notes" replace/>}/>

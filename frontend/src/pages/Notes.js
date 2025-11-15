@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 
-const Tasks = () => {
+const Notes = () => {
     const [notes, setNotes] = useState([])
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -37,9 +37,8 @@ const Tasks = () => {
     }
 
     const updateNote = async (id)=>{
-        
         try{
-            await api.post(`/tasks/${id}`,{title, description})
+            await api.put(`/notes/${id}`,{title, description})
             setEditingID(null)
             setTitle("")
             setDescription("")
@@ -52,7 +51,7 @@ const Tasks = () => {
     const deleteNote = async (id)=>{
         if(window.confirm("Are you sure you want to delete?")){
             try{
-                await api.delete(`/tasks/${id}`)
+                await api.delete(`/notes/${id}`)
                 fetchNotes()
             }catch(err){
                 console.error(err)
@@ -78,10 +77,10 @@ const Tasks = () => {
 
             <div>
                 <form onSubmit={editingID ? (e)=>{e.preventDefault();updateNote(editingID)}:(e)=>handleCreateNotes(e)}>
-                    <input required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
-                    <input required value={description} onChange={(e)=>{setDescription(e.target.value)}}/>
+                    <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Notes Title"/>
+                    <textarea required value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="3" placeholder="Notes Description"/>
                     <div>
-                        <button>{editingID ? "Edit":"Add"}</button>
+                        <button type="submit">{editingID ? "Update":"Add"}</button>
                         {editingID &&
                          <button type="button" onClick={()=>{setEditingID(null);setTitle("");setDescription("")}}>Cancel</button>}
                     </div>
@@ -114,4 +113,4 @@ const Tasks = () => {
     )
 }
 
-export default Tasks
+export default Notes

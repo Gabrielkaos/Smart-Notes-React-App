@@ -45,6 +45,7 @@ router.post("/",(req, res)=>{
     const {title, description} = req.body
     const userId = req.user.userId
 
+
     db.run("INSERT INTO notes (title, description, user_id) VALUES (?, ?, ?)",
         [title, description || '',userId],
         (err)=>{
@@ -64,6 +65,8 @@ router.put("/:id",(req, res)=>{
     const noteId = req.params.id
     const userId = req.user.userId
     const {title, description} = req.body
+
+    console.log("Update in backend")
     
     db.get("SELECT * FROM notes WHERE id = ? AND user_id = ?",
         [noteId,userId],
@@ -74,15 +77,18 @@ router.put("/:id",(req, res)=>{
             if(!note){
                 return res.status(401).json({error:"Note doesnt exist"})
             }
-
-            db.run("UPDATE notes WHERE id = ? SET title = ?, description = ?, updated_at = CURRENT_TIMESTAMP",
-                [noteId,
+            console.log("Note to be updated exists")
+            db.run("UPDATE notes SET title = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+                [
                  title || note.title,
-                 description !== undefined ? description:note.description
+                 description !== undefined ? description:note.description,
+                 noteId
                 ],(err)=>{
                     if(err){
                         return res.status(500).json({error:"Updating error"})
                     }
+
+                    console.log("Updated")
 
                     res.status(201).json({
                         message:"Updated Successfully",
