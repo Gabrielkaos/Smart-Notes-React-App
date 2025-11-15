@@ -8,7 +8,7 @@ const authNote = require("./routes/notes")
 app = express()
 PORT = process.env.PORT
 
-app.use(cors)
+app.use(cors())
 app.use(express.json())
 
 app.use("/api/auth",authRoute)
@@ -18,4 +18,4 @@ app.get("/",(req, res)=>{
     res.json({message:"API"})
 })
 
-app.listen(PORT,()=>console.log(`Server listening on port ${PORT}`))
+app.listen(PORT,()=>console.log(`Server listening on http://localhost:${PORT}`))
