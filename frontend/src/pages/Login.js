@@ -27,7 +27,7 @@ const Login = () =>{
         <div className="login-container">
             <div className="login-card">
                 <h2>Login</h2>
-                {error && <div>{error}</div>}
+                {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Username</label>
@@ -44,7 +44,7 @@ const Login = () =>{
                     
                     <button type="submit" className="btn-primary">Login</button>
                 </form>
-                <p>
+                <p className="auth-link">
                     Don't have an account? <Link to="/register">Register</Link>
                 </p>
             </div>
