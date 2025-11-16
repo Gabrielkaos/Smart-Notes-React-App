@@ -34,27 +34,7 @@ const Notes = () => {
             setDescription("")
             fetchNotes()
         }catch(error){
-            let errorMessage = 'Creating failed'
-      
-            if (error.response?.data) {
-                if (error.response.data.details) {
-                const details = error.response.data.details
-                errorMessage = Array.isArray(details) 
-                    ? details.map(d => d.msg).join(', ')
-                    : details
-                } else {
-                errorMessage = error.response.data.message || 
-                                error.response.data.error || 
-                                'Creating failed'
-                }
-            } else if (error.message) {
-                errorMessage = error.message
-            }
-            
-            return {
-                success: false,
-                error: errorMessage
-            }
+            console.error(error)
         }
     }
 
