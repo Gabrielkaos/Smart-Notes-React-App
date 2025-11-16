@@ -1,6 +1,5 @@
 const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
-const xss = require('xss-clean')
 const config = require('../config/config')
 
 // Rate limiting - prevent brute force attacks
@@ -33,6 +32,5 @@ const securityHeaders = helmet({
 module.exports = {
   limiter,
   authLimiter,
-  securityHeaders,
-  xss: xss()
+  securityHeaders
 }

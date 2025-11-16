@@ -3,7 +3,7 @@ const express = require("express")
 const logger = require("./utils/logger")
 const config = require("./config/config")
 const { errorHandler, notFound } = require("./middleware/errorHandler")
-const {limiter, securityHeaders, xss} = require("./middleware/security")
+const {limiter, securityHeaders} = require("./middleware/security")
 
 const authRoute = require("./routes/auth")
 const authNote = require("./routes/notes")

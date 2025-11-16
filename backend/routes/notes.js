@@ -13,23 +13,6 @@ router.use(authMiddleWare)
 //api/notes
 
 
-router.get('/stats/summary', asyncHandler(async (req, res) => {
-  const userId = req.user.userId
-
-  const stats = await dbGet(
-    `SELECT 
-      COUNT(*) as total,
-     FROM notes WHERE user_id = ?`,
-    [userId]
-  )
-
-  res.json({
-    status: 'success',
-    data: { stats }
-  })
-}))
-
-
 router.get("/", asyncHandler(async (req, res)=>{
     const userId = req.user.userId
 

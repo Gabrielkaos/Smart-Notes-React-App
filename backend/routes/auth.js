@@ -44,7 +44,7 @@ router.post("/register",validateRegister, asyncHandler(async (req, res)=>{
     })
 }))
 
-router.post("/login", async (req, res) => {
+router.post("/login",validateLogin, async (req, res) => {
     const {username, password} = req.body
 
     const user = await dbGet('SELECT * FROM users WHERE username = ?',[username])

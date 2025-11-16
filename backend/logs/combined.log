@@ -1,115 +1,17 @@
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 17:36:04"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 17:36:04"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 17:36:04"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 17:36:04"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 17:36:04"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 17:37:30"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 17:37:30"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 17:37:30"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 17:37:30"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 17:37:30"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 17:48:29"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 17:48:35"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 17:48:35"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 17:48:35"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 17:48:35"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 17:48:35"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:08:37"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:09:01"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:09:01"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:09:01"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:09:01"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:09:01"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:10:27"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:10:28"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:10:28"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:10:28"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:10:28"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:10:28"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:12:55"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:12:56"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:12:56"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:12:56"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:12:56"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:12:56"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:14:41"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:14:42"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:14:42"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:14:42"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:14:42"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:14:42"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:17:31"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:17:32"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:17:32"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:17:32"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:17:32"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:17:32"}
-{"ip":"::1","level":"info","message":"POST /api/auth/register","service":"note-manager-api","timestamp":"2025-11-16 18:17:42","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/register","service":"note-manager-api","timestamp":"2025-11-16 18:17:48","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/register","service":"note-manager-api","timestamp":"2025-11-16 18:17:54","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/register","service":"note-manager-api","timestamp":"2025-11-16 18:18:02","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"New user registered gabmontes","service":"note-manager-api","timestamp":"2025-11-16 18:18:02"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:18:02","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:18:02","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:19","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:19","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:19:34"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:35","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:19:35"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:35","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:19:35"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:35","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:19:35"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:19:44","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:19:44"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:22:41","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:22:41"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:25:08","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: table notes has no column named priority","service":"note-manager-api","stack":"Error: SQLITE_ERROR: table notes has no column named priority","timestamp":"2025-11-16 18:25:08"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:26:30"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:26:31"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:26:31"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:26:31"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:26:31"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:26:31"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:26:34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:26:34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:26:43","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"Note created by user 2: Hello","service":"note-manager-api","timestamp":"2025-11-16 18:26:43"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:26:43","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"PUT /api/notes/6","service":"note-manager-api","timestamp":"2025-11-16 18:26:50","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"Note 6 updated by user 2","service":"note-manager-api","timestamp":"2025-11-16 18:26:50"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:26:50","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"PUT /api/notes/6","service":"note-manager-api","timestamp":"2025-11-16 18:26:58","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"Note 6 updated by user 2","service":"note-manager-api","timestamp":"2025-11-16 18:26:58"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:26:58","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-16 18:27:17","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"__augmented":true,"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: no such column: is_active","service":"note-manager-api","stack":"Error: SQLITE_ERROR: no such column: is_active\n--> in Database#get('SELECT * FROM users WHERE username = ? AND is_active = 1', [ 'gabmontes' ], [Function (anonymous)])\n    at /home/gabriel/Notes_CRA/backend/database/database.js:81:8\n    at new Promise (<anonymous>)\n    at dbGet (/home/gabriel/Notes_CRA/backend/database/database.js:80:10)\n    at /home/gabriel/Notes_CRA/backend/routes/auth.js:50:24\n    at Layer.handleRequest (/home/gabriel/Notes_CRA/backend/node_modules/router/lib/layer.js:152:17)\n    at next (/home/gabriel/Notes_CRA/backend/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/home/gabriel/Notes_CRA/backend/node_modules/router/lib/route.js:117:3)\n    at handle (/home/gabriel/Notes_CRA/backend/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/home/gabriel/Notes_CRA/backend/node_modules/router/lib/layer.js:152:17)","timestamp":"2025-11-16 18:27:17"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:27:50"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:27:51"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:27:51"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:27:51"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:27:51"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:27:51"}
-{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-16 18:28:04","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"code":"SQLITE_ERROR","errno":1,"level":"error","message":"Database query error: SQLITE_ERROR: no such column: last_login","service":"note-manager-api","stack":"Error: SQLITE_ERROR: no such column: last_login","timestamp":"2025-11-16 18:28:04"}
-{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-16 18:28:20"}
-{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 18:28:21"}
-{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 18:28:21"}
-{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 18:28:21"}
-{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 18:28:21"}
-{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 18:28:21"}
-{"ip":"::1","level":"info","message":"POST /api/auth/register","service":"note-manager-api","timestamp":"2025-11-16 18:28:34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"New user registered gabmontes","service":"note-manager-api","timestamp":"2025-11-16 18:28:34"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:28:34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:28:34","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-16 18:28:43","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"Login successful gabmontes","service":"note-manager-api","timestamp":"2025-11-16 18:28:43"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:28:43","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:28:43","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-16 18:28:46","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-16 18:28:55","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"level":"info","message":"Login successful gabmontes","service":"note-manager-api","timestamp":"2025-11-16 18:28:55"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:28:55","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
-{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 18:28:55","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-16 21:15:58"}
+{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-16 21:15:58"}
+{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-16 21:15:58"}
+{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-16 21:15:58"}
+{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-16 21:15:58"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:05","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:05","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-16 21:16:13","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Login successful gabmontes","service":"note-manager-api","timestamp":"2025-11-16 21:16:13"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:13","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:13","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:22","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Note created by user 1: Hello","service":"note-manager-api","timestamp":"2025-11-16 21:16:22"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:22","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"PUT /api/notes/1","service":"note-manager-api","timestamp":"2025-11-16 21:16:36","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Note 1 updated by user 1","service":"note-manager-api","timestamp":"2025-11-16 21:16:36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:36","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
