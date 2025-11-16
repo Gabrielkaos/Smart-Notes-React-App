@@ -16,31 +16,108 @@ const db = new sqlite3.Database(config.database.path,(err)=>{
     }
     else{
         logger.info("Connected to Database")
-        
+        initializeDatabase()
     }
 })
 
+db.run('PRAGMA foreign_keys = ON')
 
-db.serialize(()=>{
-    db.run(`CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL
-        )
-    `)
+function initializeDatabase(){
+    db.serialize(()=>{
+        db.run(`CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL,
+            is_active INTEGER DEFAULT 1,
+            last_login DATETIME,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        `,(err)=>{
+            if(err){
+                logger.error("Error creating user table",err)
+            }else{
+                logger.info("Created users table")
+            }
+        })
 
-    db.run(`CREATE TABLE IF NOT EXISTS notes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        description TEXT,
-        user_id INTEGER NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-        )
-    `)
+        db.run(`CREATE TABLE IF NOT EXISTS notes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT,
+            priority TEXT DEFAULT 'medium' CHECK(priority IN ('low', 'medium', 'high')),
+            user_id INTEGER NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        `,(err)=>{
+            if(err){
+                logger.error("Error creating notes table",err)
+            }else{
+                logger.info("Created notes table")
+            }
+        })
 
-    console.log("Tables Created")
+        db.run('CREATE INDEX IF NOT EXISTS idx_tasks_user_id ON tasks(user_id)');
+    })
+}
+
+
+const dbAll = (sql, params = []) => {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => {
+      if (err) {
+        logger.error('Database query error:', err)
+        reject(err)
+      } else {
+        resolve(rows)
+      }
+    })
+  })
+}
+
+const dbGet = (sql, params = []) => {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) {
+        logger.error('Database query error:', err)
+        reject(err)
+      } else {
+        resolve(row)
+      }
+    })
+  })
+}
+
+const dbRun = (sql, params = []) => {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function(err) {
+      if (err) {
+        logger.error('Database query error:', err)
+        reject(err)
+      } else {
+        resolve({ id: this.lastID, changes: this.changes })
+      }
+    })
+  })
+}
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+  db.close((err) => {
+    if (err) {
+      logger.error('Error closing database:', err)
+    } else {
+      logger.info('Database connection closed')
+    }
+    process.exit(0)
+  })
 })
 
-module.exports = db
+module.exports = {
+  db,
+  dbAll,
+  dbGet,
+  dbRun
+};
