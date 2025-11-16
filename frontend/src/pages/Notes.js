@@ -79,8 +79,8 @@ const Notes = () => {
 
             <div className="notes-form-container">
                 <form onSubmit={editingID ? (e)=>{e.preventDefault();updateNote(editingID)}:(e)=>handleCreateNotes(e)}>
-                    <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
-                    <textarea required value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="3" placeholder="Description"/>
+                    <input name="title" type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
+                    <textarea name="description" required value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="3" placeholder="Description"/>
                     <div className="form-buttons">
                         <button className="btn-primary" type="submit">{editingID ? "Update":"Add"}</button>
                         {editingID &&

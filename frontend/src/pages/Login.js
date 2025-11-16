@@ -31,13 +31,13 @@ const Login = () =>{
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Username</label>
-                        <input required
+                        <input required name="username"
                         value={username}
                         onChange={(e)=>setUsername(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password"
+                        <input type="password" name="password"
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)}/>
                     </div>
