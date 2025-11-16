@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken")
 const {asyncHandler, AppError} = require("../middleware/errorHandler")
 const { validateRegister, validateLogin } = require('../middleware/validation')
 const { authLimiter } = require('../middleware/security')
-const { use } = require("react")
+
 
 //api/auth/
 
@@ -47,7 +47,7 @@ router.post("/register",validateRegister, asyncHandler(async (req, res)=>{
 router.post("/login", async (req, res) => {
     const {username, password} = req.body
 
-    const user = await dbGet('SELECT * FROM users WHERE username = ? AND is_active = 1',[username])
+    const user = await dbGet('SELECT * FROM users WHERE username = ?',[username])
 
     if(!user){
         throw new AppError("Invalid credentials",401)

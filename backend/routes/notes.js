@@ -12,24 +12,29 @@ const {validateNote, validateNoteId} = require("../middleware/validation")
 router.use(authMiddleWare)
 //api/notes
 
+
+router.get('/stats/summary', asyncHandler(async (req, res) => {
+  const userId = req.user.userId
+
+  const stats = await dbGet(
+    `SELECT 
+      COUNT(*) as total,
+     FROM notes WHERE user_id = ?`,
+    [userId]
+  )
+
+  res.json({
+    status: 'success',
+    data: { stats }
+  })
+}))
+
+
 router.get("/", asyncHandler(async (req, res)=>{
     const userId = req.user.userId
-    const { priority, sort = 'created_at', order = 'DESC' } = req.query;
 
     let query = "SELECT * FROM notes WHERE user_id = ?"
     const params = [userId]
-
-    if(priority){
-        query += ' AND priority = ?'
-        params.push(priority)
-    }
-
-    const allowedSort = ['created_at', 'updated_at', 'due_date', 'priority', 'title']
-    const allowedOrder = ['ASC', 'DESC']
-
-    if (allowedSort.includes(sort) && allowedOrder.includes(order.toUpperCase())) {
-        query += ` ORDER BY ${sort} ${order}`
-    }
 
     const notes = await dbAll(query, params)
     res.json({
@@ -59,16 +64,14 @@ router.get('/:id', validateNoteId, asyncHandler(async (req, res) => {
 }))
 
 router.post('/', validateNote, asyncHandler(async (req, res) => {
-  const { title, description, priority } = req.body
+  const { title, description} = req.body
   const userId = req.user.userId
 
   const result = await dbRun(
-    `INSERT INTO notes (title, description, priority, user_id) 
-     VALUES (?, ?, ?, ?)`,
+    `INSERT INTO notes (title, description, user_id) VALUES (?, ?, ?)`,
     [
       title,
       description || '',
-      priority || 'medium',
       userId
     ]
   )
@@ -83,7 +86,6 @@ router.post('/', validateNote, asyncHandler(async (req, res) => {
         id: result.id,
         title,
         description,
-        priority: priority || 'medium',
         user_id: userId
       }
     }
@@ -94,7 +96,7 @@ router.post('/', validateNote, asyncHandler(async (req, res) => {
 router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res) => {
   const noteId = req.params.id
   const userId = req.user.userId
-  const { title, description, priority } = req.body
+  const { title, description } = req.body
 
   
   const note = await dbGet(
@@ -109,12 +111,11 @@ router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res)
   
   await dbRun(
     `UPDATE notes 
-     SET title = ?, description = ?, priority = ?, updated_at = CURRENT_TIMESTAMP 
+     SET title = ?, description = ?, updated_at = CURRENT_TIMESTAMP 
      WHERE id = ?`,
     [
       title || task.title,
       description !== undefined ? description : task.description,
-      priority || task.priority,
       noteId
     ]
   )
@@ -153,21 +154,6 @@ router.delete('/:id', validateNoteId, asyncHandler(async (req, res) => {
 }))
 
 
-router.get('/stats/summary', asyncHandler(async (req, res) => {
-  const userId = req.user.userId
 
-  const stats = await dbGet(
-    `SELECT 
-      COUNT(*) as total,
-      SUM(CASE WHEN priority = 'high' THEN 1 ELSE 0 END) as high_priority,
-     FROM tasks WHERE user_id = ?`,
-    [userId]
-  )
-
-  res.json({
-    status: 'success',
-    data: { stats }
-  })
-}))
 
 module.exports = router

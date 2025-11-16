@@ -28,7 +28,6 @@ function initializeDatabase(){
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            is_active INTEGER DEFAULT 1,
             last_login DATETIME,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -45,7 +44,6 @@ function initializeDatabase(){
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             description TEXT,
-            priority TEXT DEFAULT 'medium' CHECK(priority IN ('low', 'medium', 'high')),
             user_id INTEGER NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -59,7 +57,7 @@ function initializeDatabase(){
             }
         })
 
-        db.run('CREATE INDEX IF NOT EXISTS idx_tasks_user_id ON tasks(user_id)');
+        db.run('CREATE INDEX IF NOT EXISTS idx_notes_user_id ON notes(user_id)');
     })
 }
 

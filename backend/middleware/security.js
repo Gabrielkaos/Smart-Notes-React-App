@@ -1,6 +1,5 @@
 const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
-const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const config = require('../config/config')
 
@@ -35,6 +34,5 @@ module.exports = {
   limiter,
   authLimiter,
   securityHeaders,
-  mongoSanitize: mongoSanitize(),
   xss: xss()
 }

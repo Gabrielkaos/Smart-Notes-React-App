@@ -3,13 +3,16 @@ const express = require("express")
 const logger = require("./utils/logger")
 const config = require("./config/config")
 const { errorHandler, notFound } = require("./middleware/errorHandler")
-const {limiter, securityHeaders, mongoSanitize, xss} = require("./middleware/security")
+const {limiter, securityHeaders, xss} = require("./middleware/security")
 
 const authRoute = require("./routes/auth")
 const authNote = require("./routes/notes")
 
 
 app = express()
+
+
+app.set('trust proxy', 1);
 
 //security
 app.use(securityHeaders)
@@ -21,11 +24,11 @@ app.use(cors({
 }))
 
 app.use(express.json({limit:"10mb"}))
-app,use(express.urlencoded({limit:"10mb",extended:true}))
+app.use(express.urlencoded({limit:"10mb",extended:true}))
 
 //data
-app.use(mongoSanitize)
-app.use(xss)
+// app.use(mongoSanitize)
+// app.use(xss)
 
 
 app.use((req, res, next) => {
@@ -55,7 +58,7 @@ app.get('/', (req, res) => {
     endpoints: {
       health: '/health',
       auth: '/api/auth',
-      tasks: '/api/notes'
+      notes: '/api/notes'
     }
   })
 })

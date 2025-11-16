@@ -22,13 +22,33 @@ export const AuthProvider = ({children})=>{
         try{
             const res = await api.post("/auth/register",{username, password})
         
-            const {token, user} = res.data
+            const {token, user} = res.data.data || res.data
             localStorage.setItem("token",token)
             localStorage.setItem("user",JSON.stringify(user))
             setUser(user)
             return {success:true}
-        }catch(err){
-            return {success:false,error:err.response?.data?.error || "Registration failed"}
+        }catch(error){
+            let errorMessage = 'Registration failed'
+      
+            if (error.response?.data) {
+                if (error.response.data.details) {
+                const details = error.response.data.details
+                errorMessage = Array.isArray(details) 
+                    ? details.map(d => d.msg).join(', ')
+                    : details
+                } else {
+                errorMessage = error.response.data.message || 
+                                error.response.data.error || 
+                                'Registration failed'
+                }
+            } else if (error.message) {
+                errorMessage = error.message
+            }
+            
+            return {
+                success: false,
+                error: errorMessage
+            }
         }
     }
 
@@ -36,13 +56,33 @@ export const AuthProvider = ({children})=>{
         try{
             const res = await api.post("/auth/login",{username, password})
         
-            const {token, user} = res.data
+            const {token, user} = res.data.data || res.data
             localStorage.setItem("token",token)
             localStorage.setItem("user",JSON.stringify(user))
             setUser(user)
             return {success:true}
-        }catch(err){
-            return {success:false,error:err.response?.data?.error || "Registration failed"}
+        }catch(error){
+            let errorMessage = 'Login failed'
+      
+            if (error.response?.data) {
+                if (error.response.data.details) {
+                const details = error.response.data.details
+                errorMessage = Array.isArray(details) 
+                    ? details.map(d => d.msg).join(', ')
+                    : details
+                } else {
+                errorMessage = error.response.data.message || 
+                                error.response.data.error || 
+                                'Login failed'
+                }
+            } else if (error.message) {
+                errorMessage = error.message
+            }
+            
+            return {
+                success: false,
+                error: errorMessage
+            }
         }
     }
 
