@@ -34,7 +34,7 @@ note management application built with **Node.js**, **Express**, **React**, and 
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 task-manager/
@@ -82,7 +82,7 @@ task-manager/
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Runtime**: Node.js
@@ -103,7 +103,7 @@ task-manager/
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -149,7 +149,7 @@ npm start
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 ### Base URL
 ```
@@ -233,7 +233,7 @@ Authorization: Bearer <token>
 
 ---
 
-## 🔒 Security Features
+## Security Features
 
 ### Authentication
 - **Password Hashing**
@@ -255,7 +255,7 @@ Authorization: Bearer <token>
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Manual Testing with cURL
 
@@ -283,7 +283,7 @@ curl -X POST http://localhost:5000/api/notes \
 
 ---
 
-## 📊 Database Schema
+## Database Schema
 
 ### Users Table
 ```sql
