@@ -1,78 +1,91 @@
 const express = require("express")
 router = express.Router()
 
-const db = require("../database/database")
+const config = require("../config/config")
+const logger = require("../utils/logger")
+const {dbRun, dbGet} = require("../database/database")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const {asyncHandler, AppError} = require("../middleware/errorHandler")
+const { validateRegister, validateLogin } = require('../middleware/validation')
+const { authLimiter } = require('../middleware/security')
+const { use } = require("react")
 
 //api/auth/
 
-router.post("/register", async (req, res)=>{
+router.use(authLimiter)
+
+router.post("/register",validateRegister, asyncHandler(async (req, res)=>{
     const {username, password} = req.body
 
+    const existingUser = await dbGet("SELECT * FROM users WHERE username = ?",[username])
 
-    if(!username || !password){
-        return res.status(400).json({error:"Incomplete fields"})
+    if (existingUser){
+        throw new AppError("Username already exists", 400)
     }
 
-    try{
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password,salt)
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password,salt)
 
-        db.run(`INSERT INTO users (username, password) VALUES (?, ?)`,
-            [username,hashedPassword],
-            (err)=>{
-                if(err){
-                    if(err.message.includes("UNIQUE")){
-                        return res.status(400).json({error:"Username already exists"})
-                    }else{
-                        return res.status(500).json({error:"Database Error"})
-                    }
-                }
-                //create token
-                const token = jwt.sign({userId:this.lastID, username},process.env.SECRET,{expiresIn:"7d"})
 
-                res.status(201).json({message:"Successfully registered",token,user:{id:this.lastID,username}})
-            }
-        )
+    const result = await dbRun("INSERT INTO users (username, password) VALUES (?, ?)",[username, hashedPassword])
 
-    }catch(err){
-        res.status(500).json({error:"Server Error"})
-    }
-})
+    const token = jwt.sign({userId:result.id, username},config.jwt.secret,{expiresIn:config.jwt.expire})
+
+    logger.info(`New user registered ${username}`)
+
+    res.status(201).json({
+        status:"success",
+        message:"New user registered",
+        data:{
+            token,
+            user:{id:result.id,username}
+        }
+    })
+}))
 
 router.post("/login", async (req, res) => {
     const {username, password} = req.body
 
-    if(!username || !password){
-        return res.status(400).json({error:"Incomplete fields"})
+    const user = await dbGet('SELECT * FROM users WHERE username = ? AND is_active = 1',[username])
+
+    if(!user){
+        throw new AppError("Invalid credentials",401)
     }
 
-    try{
-        db.get(`SELECT * FROM users WHERE username = ?`,
-            [username],
-             async (err, user)=>{
-                if(err){
-                    return res.status(500).json({error:"Database Error"})
-                }
-                if(!user){
-                    return res.status(401).json({error:"Invalid User"})
-                }
-
-                //compare password
-                const isMatch = await bcrypt.compare(password,user.password)
-                if(!isMatch){
-                    return res.status(401).json({error:"Password doesnt match"})
-                }
-
-                const token = jwt.sign({userId:user.id,username},process.env.SECRET,{expiresIn:"7d"})
-
-                res.status(201).json({message:"Login Successful",token,user:{id:user.id,username:user.username}})
-            }
-        )
-    }catch(err){
-        res.status(500).json({error:"Server Error"})
+    const isMatch = await bcrypt.compare(password,user.password)
+    if(!isMatch){
+        throw new AppError("Password doesnt match", 401)
     }
+
+    await dbRun("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?",[user.id])
+
+    const token = jwt.sign({userId:user.id, username},config.jwt.secret,{expiresIn:config.jwt.expire})
+
+    logger.info(`Login successful ${user.username}`)
+
+    res.json({
+        status:"sucsess",
+        message:"Login successful",
+        data:{
+            token,
+            user:{id:user.id,username:user.username}
+        }
+    })
 })
+
+
+router.get("/profile",require("../middleware/auth"), asyncHandler(async (req, res)=>{
+    const user = await dbGet("SELECT id, username, created_at, last_login FROM users WHERE id = ?",[req.user.userId])
+
+    if(!user){
+        throw new AppError("User not found",404)
+    }
+
+    res.json({
+        status:"success",
+        data:{user}
+    })
+}))
 
 module.exports = router

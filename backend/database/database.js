@@ -103,7 +103,7 @@ const dbRun = (sql, params = []) => {
   })
 }
 
-// Graceful shutdown
+
 process.on('SIGINT', () => {
   db.close((err) => {
     if (err) {
