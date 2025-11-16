@@ -1,9 +1,23 @@
 const sqlite3 = require("sqlite3").verbose()
+const path = require('path')
+const fs = require('fs')
+const config = require('../config/config')
+const logger = require('../utils/logger')
 
+const dbDir = path.dirname(config.database.path);
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true })
+}
 
-const db = new sqlite3.Database("./database/notes.db",(err)=>{
-    if(err)console.log("Error connecting to database")
-    else console.log("Connected to database")
+const db = new sqlite3.Database(config.database.path,(err)=>{
+    if(err){
+        logger.error("Error conecting to database",err)
+        process.exit(1)
+    }
+    else{
+        logger.info("Connected to Database")
+        
+    }
 })
 
 
