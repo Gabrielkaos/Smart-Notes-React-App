@@ -2,121 +2,172 @@ const express = require('express')
 router = express.Router()
 
 const authMiddleWare = require("../middleware/auth")
+const {asyncHandler, AppError} = require("../middleware/errorHandler")
+const {dbAll, dbGet, dbRun} = require("../database/database")
+const logger = require("../utils/logger")
+const {validateNote, validateNoteId} = require("../middleware/validation")
+
+
+
 router.use(authMiddleWare)
-
-const db = require("../database/database")
-
-
 //api/notes
 
-router.get("/",(req, res)=>{
+router.get("/", asyncHandler(async (req, res)=>{
     const userId = req.user.userId
-    db.all("SELECT * FROM notes WHERE user_id = ? ORDER BY created_at DESC",
-        [userId],
-        (err, notes)=>{
-            if(err){
-                return res.status(500).json({error:"Database error"})
-            }
+    const { priority, sort = 'created_at', order = 'DESC' } = req.query;
 
-            res.json({notes})
-        }
-    )
-})
+    let query = "SELECT * FROM notes WHERE user_id = ?"
+    const params = [userId]
 
-router.get("/:id",(req, res)=>{
-    const userId = req.user.userId
-    const noteId = req.params.id
-    db.get("SELECT * FROM notes WHERE user_id = ? AND id = ?",
-        [userId,noteId],
-        (err, note)=>{
-            if(err){
-                return res.status(500).json({error:"Database error"})
-            }
-            if(!note){
-                return res.status(401).json({error:"Note doesnt exist"})
-            }
+    if(priority){
+        query += ' AND priority = ?'
+        params.push(priority)
+    }
 
-            res.json({note})
-        }
-    )
-})
+    const allowedSort = ['created_at', 'updated_at', 'due_date', 'priority', 'title']
+    const allowedOrder = ['ASC', 'DESC']
 
-router.post("/",(req, res)=>{
-    const {title, description} = req.body
-    const userId = req.user.userId
+    if (allowedSort.includes(sort) && allowedOrder.includes(order.toUpperCase())) {
+        query += ` ORDER BY ${sort} ${order}`
+    }
+
+    const notes = await dbAll(query, params)
+    res.json({
+        status:"success",
+        results:notes.length,
+        data:{notes}
+    })
+}))
+
+router.get('/:id', validateNoteId, asyncHandler(async (req, res) => {
+  const noteId = req.params.id
+  const userId = req.user.userId
+
+  const note = await dbGet(
+    'SELECT * FROM notes WHERE id = ? AND user_id = ?',
+    [noteId, userId]
+  )
+
+  if (!note) {
+    throw new AppError('Note not found', 404)
+  }
+
+  res.json({
+    status: 'success',
+    data: { note }
+  })
+}))
+
+router.post('/', validateNote, asyncHandler(async (req, res) => {
+  const { title, description, priority } = req.body
+  const userId = req.user.userId
+
+  const result = await dbRun(
+    `INSERT INTO notes (title, description, priority, user_id) 
+     VALUES (?, ?, ?, ?)`,
+    [
+      title,
+      description || '',
+      priority || 'medium',
+      userId
+    ]
+  )
+
+  logger.info(`Note created by user ${userId}: ${title}`)
+
+  res.status(201).json({
+    status: 'success',
+    message: 'Note created successfully',
+    data: {
+      note: {
+        id: result.id,
+        title,
+        description,
+        priority: priority || 'medium',
+        user_id: userId
+      }
+    }
+  })
+}))
 
 
-    db.run("INSERT INTO notes (title, description, user_id) VALUES (?, ?, ?)",
-        [title, description || '',userId],
-        (err)=>{
-            if(err){
-                return res.status(500).json({error:"Database error"})
-            }
-            res.status(201).json({
-                message:"Notes created successfully",
-                note:{id:this.lastID, title, description:description || "", user_id:userId}
-            })
-        }
-    )
+router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res) => {
+  const noteId = req.params.id
+  const userId = req.user.userId
+  const { title, description, priority } = req.body
 
-})
+  
+  const note = await dbGet(
+    'SELECT * FROM notes WHERE id = ? AND user_id = ?',
+    [noteId, userId]
+  )
 
-router.put("/:id",(req, res)=>{
-    const noteId = req.params.id
-    const userId = req.user.userId
-    const {title, description} = req.body
+  if (!note) {
+    throw new AppError('Note not found', 404)
+  }
 
-    console.log("Update in backend")
-    
-    db.get("SELECT * FROM notes WHERE id = ? AND user_id = ?",
-        [noteId,userId],
-        (err,note)=>{
-            if(err){
-                return res.status(500).json({error:"Database error"})
-            }
-            if(!note){
-                return res.status(401).json({error:"Note doesnt exist"})
-            }
-            console.log("Note to be updated exists")
-            db.run("UPDATE notes SET title = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
-                [
-                 title || note.title,
-                 description !== undefined ? description:note.description,
-                 noteId
-                ],(err)=>{
-                    if(err){
-                        return res.status(500).json({error:"Updating error"})
-                    }
+  
+  await dbRun(
+    `UPDATE notes 
+     SET title = ?, description = ?, priority = ?, updated_at = CURRENT_TIMESTAMP 
+     WHERE id = ?`,
+    [
+      title || task.title,
+      description !== undefined ? description : task.description,
+      priority || task.priority,
+      noteId
+    ]
+  )
 
-                    console.log("Updated")
+  logger.info(`Note ${noteId} updated by user ${userId}`)
 
-                    res.status(201).json({
-                        message:"Updated Successfully",
-                        note:{id:note.id,title:title || note.title, description:description !== undefined ? description:note.description}
-                    })
-                }
-            )
-        }
-    )
+  
+  const updatedNote = await dbGet('SELECT * FROM notes WHERE id = ?', [noteId])
 
-})
+  res.json({
+    status: 'success',
+    message: 'Note updated successfully',
+    data: { note: updatedNote }
+  })
+}))
 
-router.delete("/:id",(req, res)=>{
-    const userId = req.user.userId
-    const noteId = req.params.id
-    db.run("DELETE FROM notes WHERE user_id = ? AND id = ?",
-        [userId,noteId],
-        (err, note)=>{
-            if(err){
-                return res.status(500).json({error:"Deletion error"})
-            }
-            if(this.changes === 0){
-                return res.status(404).json({error:"Note not found"})
-            }
+router.delete('/:id', validateNoteId, asyncHandler(async (req, res) => {
+  const noteId = req.params.id
+  const userId = req.user.userId
 
-            res.json({message:"Deleted Successfully"})
-        }
-    )
-})
+  const result = await dbRun(
+    'DELETE FROM notes WHERE id = ? AND user_id = ?',
+    [noteId, userId]
+  )
+
+  if (result.changes === 0) {
+    throw new AppError('Note not found', 404)
+  }
+
+  logger.info(`Note ${noteId} deleted by user ${userId}`)
+
+  res.json({
+    status: 'success',
+    message: 'Note deleted successfully'
+  })
+}))
+
+
+router.get('/stats/summary', asyncHandler(async (req, res) => {
+  const userId = req.user.userId
+
+  const stats = await dbGet(
+    `SELECT 
+      COUNT(*) as total,
+      SUM(CASE WHEN priority = 'high' THEN 1 ELSE 0 END) as high_priority,
+     FROM tasks WHERE user_id = ?`,
+    [userId]
+  )
+
+  res.json({
+    status: 'success',
+    data: { stats }
+  })
+}))
 
 module.exports = router
