@@ -4,7 +4,7 @@ router = express.Router()
 const authMiddleWare = require("../middleware/auth")
 router.use(authMiddleWare)
 
-const db = require("../database")
+const db = require("../database/database")
 
 
 //api/notes
