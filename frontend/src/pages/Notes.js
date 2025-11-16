@@ -1,6 +1,8 @@
 import api from "../api/Axios";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
+import "./Notes.css"
+import "./Login.css"
 
 
 const Notes = () => {
@@ -66,43 +68,43 @@ const Notes = () => {
     }
 
     return (
-        <div>
-            <header>
+        <div className="notes-container">
+            <header className="notes-header">
                 <h1>My Notes</h1>
-                <div>
+                <div className="user-info">
                     <span>Welcome {user?.username}!</span>
-                    <button onClick={logout}>Logout</button>
+                    <button className="logout-btn" onClick={logout}>Logout</button>
                 </div>
             </header>
 
-            <div>
+            <div className="notes-form-container">
                 <form onSubmit={editingID ? (e)=>{e.preventDefault();updateNote(editingID)}:(e)=>handleCreateNotes(e)}>
-                    <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Notes Title"/>
-                    <textarea required value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="3" placeholder="Notes Description"/>
-                    <div>
-                        <button type="submit">{editingID ? "Update":"Add"}</button>
+                    <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
+                    <textarea required value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="3" placeholder="Description"/>
+                    <div className="form-buttons">
+                        <button className="btn-primary" type="submit">{editingID ? "Update":"Add"}</button>
                         {editingID &&
-                         <button type="button" onClick={()=>{setEditingID(null);setTitle("");setDescription("")}}>Cancel</button>}
+                         <button className="btn-secondary" type="button" onClick={()=>{setEditingID(null);setTitle("");setDescription("")}}>Cancel</button>}
                     </div>
                     
                 </form>
             </div>
 
-            <div>
+            <div className="notes-list">
                 {notes.length === 0 ? <p>
                     No notes, create notes above.
                 </p> : 
                 notes.map((note)=>(
-                    <div key={note.id}>
-                        <div>
+                    <div key={note.id} className="notes-card">
+                        <div className="note-content">
                             <h3>{note.title}</h3>
                             {note.description && <p>{note.description}</p>}
                         </div>
-                        <div>
-                            <button onClick={()=>{
+                        <div className="note-actions">
+                            <button className="btn-edit" onClick={()=>{
                                 startEdit(note)
                             }}>Edit</button>
-                            <button onClick={()=>{
+                            <button className="btn-delete" onClick={()=>{
                                 deleteNote(note.id)
                             }}>Delete</button>
                         </div>
