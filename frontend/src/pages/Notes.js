@@ -101,6 +101,7 @@ const Notes = () => {
                             {note.description && <p>{note.description}</p>}
                         </div>
                         <div className="note-actions">
+                            <button>v{note.version}</button>
                             <button className="btn-edit" onClick={()=>{
                                 startEdit(note)
                             }}>Edit</button>

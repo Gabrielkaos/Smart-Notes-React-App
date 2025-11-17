@@ -127,11 +127,11 @@
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 12px;
     font-weight: 600;
     transition: opacity 0.2s;
 }
+
 
 .note-actions button:hover{
     opacity: 0.8;
@@ -140,9 +140,12 @@
 .btn-edit {
   background: #007bff;
   color: white;
+  cursor: pointer;
 }
 
 .btn-delete {
   background: #dc3545;
   color: white;
+  cursor: pointer;
 }
+
