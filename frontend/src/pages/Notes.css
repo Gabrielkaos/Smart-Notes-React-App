@@ -57,6 +57,10 @@
     box-sizing: border-box;
 }
 
+.notes-form-container textarea{
+    resize:vertical;
+}
+
 .notes-form-container input:focus,
 .notes-form-container textarea:focus{
     outline: none;

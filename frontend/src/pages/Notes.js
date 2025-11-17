@@ -80,7 +80,7 @@ const Notes = () => {
             <div className="notes-form-container">
                 <form onSubmit={editingID ? (e)=>{e.preventDefault();updateNote(editingID)}:(e)=>handleCreateNotes(e)}>
                     <input name="title" type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
-                    <textarea name="description" required value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="3" placeholder="Description"/>
+                    <textarea name="description" value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="7" placeholder="Description"/>
                     <div className="form-buttons">
                         <button className="btn-primary" type="submit">{editingID ? "Update":"Add"}</button>
                         {editingID &&
@@ -97,8 +97,16 @@ const Notes = () => {
                 notes.map((note)=>(
                     <div key={note.id} className="notes-card">
                         <div className="note-content">
-                            <h3>{note.title}</h3>
-                            {note.description && <p>{note.description}</p>}
+                            <h3>{
+                            note.title.length > 20 ? 
+                            note.title.slice(0,20)+"...":
+                            note.title
+                            }</h3>
+                            {note.description && <p>{
+                            note.description.length > 50 ? 
+                            note.description.slice(0,50)+"...":
+                            note.description
+                            }</p>}
                         </div>
                         <div className="note-actions">
                             <button>v{note.version}</button>
