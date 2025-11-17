@@ -94,11 +94,12 @@ router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res)
   
   await dbRun(
     `UPDATE notes 
-     SET title = ?, description = ?, updated_at = CURRENT_TIMESTAMP 
+     SET title = ?, description = ?, version = ?, updated_at = CURRENT_TIMESTAMP 
      WHERE id = ?`,
     [
       title || task.title,
       description !== undefined ? description : task.description,
+      note.version+=1,
       noteId
     ]
   )

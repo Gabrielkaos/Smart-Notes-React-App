@@ -15,3 +15,18 @@
 {"ip":"::1","level":"info","message":"PUT /api/notes/1","service":"note-manager-api","timestamp":"2025-11-16 21:16:36","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
 {"level":"info","message":"Note 1 updated by user 1","service":"note-manager-api","timestamp":"2025-11-16 21:16:36"}
 {"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-16 21:16:36","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-17 08:05:32"}
+{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-17 08:05:32"}
+{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-17 08:05:32"}
+{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-17 08:05:32"}
+{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-17 08:05:32"}
+{"ip":"::1","level":"info","message":"POST /api/notes","service":"note-manager-api","timestamp":"2025-11-17 08:06:05","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Note created by user 1: Hello","service":"note-manager-api","timestamp":"2025-11-17 08:06:05"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 08:06:05","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"POST /api/auth/login","service":"note-manager-api","timestamp":"2025-11-17 08:06:20","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Login successful gabmontes","service":"note-manager-api","timestamp":"2025-11-17 08:06:21"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 08:06:21","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 08:06:21","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 08:06:28","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 08:06:28","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-17 08:13:07"}

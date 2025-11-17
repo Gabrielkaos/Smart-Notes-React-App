@@ -45,6 +45,7 @@ function initializeDatabase(){
             title TEXT NOT NULL,
             description TEXT,
             user_id INTEGER NOT NULL,
+            version INTEGER DEFAULT 1,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
