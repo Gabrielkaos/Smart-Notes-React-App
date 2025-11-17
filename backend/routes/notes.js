@@ -79,7 +79,7 @@ router.post('/', validateNote, asyncHandler(async (req, res) => {
 router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res) => {
   const noteId = req.params.id
   const userId = req.user.userId
-  const { title, description } = req.body
+  const { title, description, is_pinned, is_archived, is_favorite } = req.body
 
   
   const note = await dbGet(
@@ -91,20 +91,26 @@ router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res)
     throw new AppError('Note not found', 404)
   }
 
-  
+  logger.info(`Note Found:${noteId}`)
+
+  logger.info(`Updating Note:${noteId}`)
   await dbRun(
     `UPDATE notes 
-     SET title = ?, description = ?, version = ?, updated_at = CURRENT_TIMESTAMP 
+     SET title = ?, description = ?, version = ?, is_pinned = ?, is_archived = ?, is_favorite = ?, updated_at = CURRENT_TIMESTAMP 
      WHERE id = ?`,
     [
-      title || task.title,
-      description !== undefined ? description : task.description,
-      note.version+=1,
+      title === "no-title" ? note.title:title,
+      description !== undefined ? description : note.description,
+      title === "no-title"?note.version:note.version+=1,
+      is_pinned !== undefined ? is_pinned : note.is_pinned,
+      is_archived !== undefined ? is_archived:note.is_archived,
+      is_favorite !== undefined ? is_favorite:note.is_favorite,
       noteId
     ]
   )
 
-  logger.info(`Note ${noteId} updated by user ${userId}`)
+  logger.info(`Note ${noteId} updated by user ${userId} 
+    `)
 
   
   const updatedNote = await dbGet('SELECT * FROM notes WHERE id = ?', [noteId])
