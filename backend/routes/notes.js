@@ -16,7 +16,7 @@ router.use(authMiddleWare)
 router.get("/", asyncHandler(async (req, res)=>{
     const userId = req.user.userId
 
-    let query = "SELECT * FROM notes WHERE user_id = ?"
+    let query = "SELECT * FROM notes WHERE user_id = ? ORDER BY is_pinned DESC, created_at DESC"
     const params = [userId]
 
     const notes = await dbAll(query, params)
@@ -94,10 +94,18 @@ router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res)
   logger.info(`Note Found:${noteId}`)
 
   logger.info(`Updating Note:${noteId}`)
+
+  let query = `UPDATE notes 
+     SET title = ?, description = ?, version = ?, is_pinned = ?, is_archived = ?, is_favorite = ?`
+
+  //update 'update_at' if its not just a toggle
+  if(title !== "no-title"){
+    query+=`, updated_at = CURRENT_TIMESTAMP`
+  }
+  query+=` WHERE id = ?`
+  
   await dbRun(
-    `UPDATE notes 
-     SET title = ?, description = ?, version = ?, is_pinned = ?, is_archived = ?, is_favorite = ?, updated_at = CURRENT_TIMESTAMP 
-     WHERE id = ?`,
+    query,
     [
       title === "no-title" ? note.title:title,
       description !== undefined ? description : note.description,

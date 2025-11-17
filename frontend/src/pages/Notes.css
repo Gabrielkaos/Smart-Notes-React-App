@@ -122,9 +122,14 @@
     color:#666
 }
 
+.note-actions-parent{
+    display: grid;
+}
+
 .note-actions{
     display: flex;
     gap: 8px;
+    height: 30px;
 }
 
 .note-actions button{
@@ -139,6 +144,12 @@
 
 .note-actions button:hover{
     opacity: 0.8;
+}
+
+.note-actions-date p{
+    color:#666;
+    font-size: 10px;
+    float: right;
 }
 
 .btn-edit {
