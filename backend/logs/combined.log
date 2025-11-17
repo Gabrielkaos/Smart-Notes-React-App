@@ -570,3 +570,23 @@
 {"level":"info","message":"Updating Note:4","service":"note-manager-api","timestamp":"2025-11-17 10:47:06"}
 {"level":"info","message":"Note 4 updated by user 1 \n    ","service":"note-manager-api","timestamp":"2025-11-17 10:47:06"}
 {"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:47:06","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"level":"info","message":"Database connection closed","service":"note-manager-api","timestamp":"2025-11-17 10:47:27"}
+{"level":"info","message":"Server running on http://localhost:5000","service":"note-manager-api","timestamp":"2025-11-17 10:50:14"}
+{"level":"info","message":"Environment: development","service":"note-manager-api","timestamp":"2025-11-17 10:50:14"}
+{"level":"info","message":"Connected to Database","service":"note-manager-api","timestamp":"2025-11-17 10:50:14"}
+{"level":"info","message":"Created users table","service":"note-manager-api","timestamp":"2025-11-17 10:50:14"}
+{"level":"info","message":"Created notes table","service":"note-manager-api","timestamp":"2025-11-17 10:50:14"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:50:19","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:50:19","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:50:19","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:50:19","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:52:22","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:52:22","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:59:00","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:59:00","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:59:10","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:59:10","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:59:27","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 10:59:27","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 11:03:11","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /api/notes","service":"note-manager-api","timestamp":"2025-11-17 11:03:11","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"}

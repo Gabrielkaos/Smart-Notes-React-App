@@ -137,7 +137,7 @@
     border: none;
     border-radius: 5px;
     font-size: 12px;
-    font-weight: 600;
+    
     transition: opacity 0.2s;
 }
 
@@ -146,21 +146,35 @@
     opacity: 0.8;
 }
 
-.note-actions-date p{
+.note-actions-date{
+    display: grid;
+    float: right;
+}
+
+.date-item{
     color:#666;
     font-size: 10px;
     float: right;
+    margin: 10px 0 0 0;
+
+}
+
+.version-display{
+    font-weight: 0;
+    background:white;
 }
 
 .btn-edit {
   background: #007bff;
   color: white;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .btn-delete {
   background: #dc3545;
   color: white;
   cursor: pointer;
+  font-weight: 600;
 }
 
