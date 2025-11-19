@@ -6,6 +6,7 @@ const config = require('../config/config')
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
 async function summarizeNote(title, description){
+    logger.info(`${title} ${description}`)
     if (!config.ai.groqApiKey){
         throw new Error("No Ai API")
     }
@@ -13,10 +14,8 @@ async function summarizeNote(title, description){
     try{
         const prompt = `Summarize this note in one concise sentence (max 20 words)
 
-            Title:${title}
-            Description:${description}
-
-            Summary:`
+                        Title:${title}
+                        Description:${description}`
 
             const response = await axios.post(
                 GROQ_API_URL,
@@ -25,14 +24,14 @@ async function summarizeNote(title, description){
                     messages: [
                     {
                         role: 'system',
-                        content: 'You are a helpful assistant that summarizes notes concisely. Always respond with just the summary, no extra text.'
+                        content: 'You are a helpful assistant that summarizes notes concisely. Always respond with just the summary, no extra text. Always output at least one sentence.'
                     },
                     {
                         role: 'user',
                         content: prompt
                     }
                     ],
-                    max_tokens: 100,
+                    max_tokens: 200,
                     temperature: 0.3
                 },
                 {
@@ -42,9 +41,9 @@ async function summarizeNote(title, description){
                     }
                 }
             )
-
+            logger.info(response.data)
             const summary = response.data.choices[0].message.content.trim()
-            logger.info("Summarized notes successfully")
+            logger.info(`Summarized notes successfully:${summary}`)
             return summary
     }catch(error){
         logger.error('AI summarization error:', error.response?.data || error.message)

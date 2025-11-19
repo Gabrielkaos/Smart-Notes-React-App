@@ -15,6 +15,10 @@ const Notes = () => {
     const [filteredNotes, setFilteredNotes] = useState([])
     const [archiveFormOpen, setArchiveFormOpen] = useState(false)
     const [favFormOpen, setFavFormOpen] = useState(false)
+    const [aiSummary, setAiSummary] = useState('');
+    const [aiLoading, setAiLoading] = useState(false);
+    const [showAiPanel, setShowAiPanel] = useState(false);
+    const [aiSuggestions, setAiSuggestions] = useState('');
 
     const fetchNotes = async () =>{
         try{
@@ -46,7 +50,34 @@ const Notes = () => {
         }
 
         setFilteredNotes(filtered)
+        setFavFormOpen(false)
+        setArchiveFormOpen(false)
     },[notes, activeTab])
+
+    useEffect(()=>{
+        setDescription(aiSummary)
+    },[aiSummary])
+
+    const handleSummarize = async () => {
+        try {
+            setAiLoading(true)
+
+            const response = await api.post("/ai/summarize", { title, description })
+
+            if (response.data.status === "success") {
+                console.log(response.data.data)
+                setAiSummary(response.data.data.summary)
+            } else {
+                console.error("Bad AI response", response.data)
+            }
+
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setAiLoading(false)
+        }
+    };
+
 
     const handleCreateNotes =  async (e) =>{
         e.preventDefault()
@@ -67,6 +98,7 @@ const Notes = () => {
             setTitle("")
             setDescription("")
             fetchNotes()
+            setFavFormOpen(false)
         }catch(err){
             console.error(err)
         }
@@ -117,6 +149,9 @@ const Notes = () => {
         if(activeTab==="archives"){
             setArchiveFormOpen(true)
         }
+        if(activeTab==="favorites"){
+            setFavFormOpen(true)
+        }
         setEditingID(note.id)
         setTitle(note.title)
         setDescription(note.description)
@@ -150,8 +185,8 @@ const Notes = () => {
                     {archiveCount > 0 && <span className="tab-count">{archiveCount}</span>}
                 </button>
             </div>
-
-            {
+            {/*archive tab*/}
+            {   
                 archiveFormOpen && 
                 <div className="notes-form-container">
                         <input name="title" type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
@@ -167,14 +202,32 @@ const Notes = () => {
                         
                 </div>
             }
-
-            { activeTab !== "archives" && <div className="notes-form-container">
+            {/*fav tab*/}
+            { favFormOpen && <div className="notes-form-container">
                 <form onSubmit={editingID ? (e)=>{e.preventDefault();updateNote(editingID)}:(e)=>handleCreateNotes(e)}>
                     <input name="title" type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
                     <textarea name="description" value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="7" placeholder="Description"/>
                     
                     <div className="form-buttons">
                         <button className="btn-primary" type="submit">{editingID ? "Update":"Add"}</button>
+                        {editingID &&
+                         <button className="btn-secondary" type="button" onClick={()=>{
+                            setEditingID(null);setTitle("");setDescription("");setFavFormOpen(false)
+                            }}>Close</button>}
+                    </div>
+                    
+                </form>
+            </div>
+            }
+            {/*note tab*/}
+            { activeTab === "notes" && <div className="notes-form-container">
+                <form onSubmit={editingID ? (e)=>{e.preventDefault();updateNote(editingID)}:(e)=>handleCreateNotes(e)}>
+                    <input name="title" type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Title"/>
+                    <textarea name="description" value={description} onChange={(e)=>{setDescription(e.target.value)} } rows="7" placeholder="Description"/>
+                    
+                    <div className="form-buttons">
+                        <button className="btn-primary" type="submit">{editingID ? "Update":"Add"}</button>
+                        <button className="btn-primary" type="button" onClick={()=>handleSummarize()}>{aiLoading ? "Summarizing":"Summarize"}</button>
                         {editingID &&
                          <button className="btn-secondary" type="button" onClick={()=>{setEditingID(null);setTitle("");setDescription("")}}>Close</button>}
                     </div>
