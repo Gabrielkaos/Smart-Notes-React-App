@@ -7,7 +7,7 @@ const {limiter, securityHeaders} = require("./middleware/security")
 
 const authRoute = require("./routes/auth")
 const authNote = require("./routes/notes")
-
+const authAi = require("./routes/ai")
 
 app = express()
 
@@ -50,6 +50,7 @@ app.get('/health', (req, res) => {
 
 app.use("/api/auth",authRoute)
 app.use("/api/notes",authNote)
+app.use("/api/ai", authAi)
 
 app.get('/', (req, res) => {
   res.json({

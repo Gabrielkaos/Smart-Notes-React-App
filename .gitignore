@@ -3,3 +3,4 @@
 /backend/logs/*
 /backend/logs/*.log
 /backend/database/*.db
+/backend/.env

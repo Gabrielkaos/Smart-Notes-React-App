@@ -20,5 +20,9 @@ module.exports = {
     rateLimit: {
         windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS),
         max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS)
+    },
+    ai:{
+        groqApiKey:process.env.API_KEY,
+        model:'llama-3.1-70b-versatile'
     }
 }
