@@ -1,2 +1,0 @@
-{"code":"SQLITE_RANGE","errno":25,"level":"error","message":"Database query error: SQLITE_RANGE: column index out of range","service":"note-manager-api","stack":"Error: SQLITE_RANGE: column index out of range","timestamp":"2025-11-17 10:36:27"}
-{"code":"SQLITE_RANGE","errno":25,"level":"error","message":"Database query error: SQLITE_RANGE: column index out of range","service":"note-manager-api","stack":"Error: SQLITE_RANGE: column index out of range","timestamp":"2025-11-17 10:37:46"}
