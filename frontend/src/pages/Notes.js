@@ -52,6 +52,9 @@ const Notes = () => {
         setFilteredNotes(filtered)
         setFavFormOpen(false)
         setArchiveFormOpen(false)
+        setEditingID(null)
+        setTitle("")
+        setDescription("")
     },[notes, activeTab])
 
     useEffect(()=>{
