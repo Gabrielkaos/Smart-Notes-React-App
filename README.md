@@ -1,4 +1,4 @@
-# Note Manager - Full Stack MERN Application
+# Note Manager + AI - Full Stack MERN Application
 
 note management application built with **Node.js**, **Express**, **React**, and **PostgreSQL**. Features authentication, CRUD operations, input validation, rate limiting, and professional error handling.
 
@@ -31,7 +31,7 @@ note management application built with **Node.js**, **Express**, **React**, and 
 - User registration and login
 - Create, read, update, delete notes
 - Protected routes and API endpoints
-
+- AI integration
 
 
 ## Tech Stack
