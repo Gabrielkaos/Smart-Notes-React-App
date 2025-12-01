@@ -3,7 +3,7 @@ router = express.Router()
 
 const config = require("../config/config")
 const logger = require("../utils/logger")
-const {dbRun, dbGet} = require("../database/database")
+const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {asyncHandler, AppError} = require("../middleware/errorHandler")
@@ -18,19 +18,22 @@ router.use(authLimiter)
 router.post("/register",validateRegister, asyncHandler(async (req, res)=>{
     const {username, password} = req.body
 
-    const existingUser = await dbGet("SELECT * FROM users WHERE username = ?",[username])
+    const existingUser = await User.findOne({
+        where:{
+            [require('sequelize').Op.or] : [ {username} ]
+        }
+    })
 
     if (existingUser){
         throw new AppError("Username already exists", 400)
     }
 
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password,salt)
+    const user = User.create({
+        username,
+        password
+    })
 
-
-    const result = await dbRun("INSERT INTO users (username, password) VALUES (?, ?)",[username, hashedPassword])
-
-    const token = jwt.sign({userId:result.id, username},config.jwt.secret,{expiresIn:config.jwt.expire})
+    const token = jwt.sign({userId:user.id, username},config.jwt.secret,{expiresIn:config.jwt.expire})
 
     logger.info(`New user registered ${username}`)
 
@@ -39,7 +42,7 @@ router.post("/register",validateRegister, asyncHandler(async (req, res)=>{
         message:"New user registered",
         data:{
             token,
-            user:{id:result.id,username}
+            user:{id:user.id,username}
         }
     })
 }))
@@ -47,18 +50,21 @@ router.post("/register",validateRegister, asyncHandler(async (req, res)=>{
 router.post("/login",validateLogin, async (req, res) => {
     const {username, password} = req.body
 
-    const user = await dbGet('SELECT * FROM users WHERE username = ?',[username])
+    const user = await User.findOne({
+        where: { username, isActive: true}
+    })
 
     if(!user){
         throw new AppError("Invalid credentials",401)
     }
 
-    const isMatch = await bcrypt.compare(password,user.password)
+    const isMatch = await user.comparePassword(password)
     if(!isMatch){
         throw new AppError("Password doesnt match", 401)
     }
 
-    await dbRun("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?",[user.id])
+    user.lastLogin = new Date()
+    await user.save()
 
     const token = jwt.sign({userId:user.id, username},config.jwt.secret,{expiresIn:config.jwt.expire})
 
@@ -76,7 +82,9 @@ router.post("/login",validateLogin, async (req, res) => {
 
 
 router.get("/profile",require("../middleware/auth"), asyncHandler(async (req, res)=>{
-    const user = await dbGet("SELECT id, username, created_at, last_login FROM users WHERE id = ?",[req.user.userId])
+    const user = await User.findByPk(req.user.userId,{
+        where:{exclude: ['password']}
+    })
 
     if(!user){
         throw new AppError("User not found",404)

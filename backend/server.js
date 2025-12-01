@@ -9,8 +9,11 @@ const authRoute = require("./routes/auth")
 const authNote = require("./routes/notes")
 const authAi = require("./routes/ai")
 
+const {connectDB} = require("./config/database")
+
 app = express()
 
+connectDB()
 
 app.set('trust proxy', 1);
 

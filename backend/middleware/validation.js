@@ -63,7 +63,7 @@ const validateNote = [
 
 const validateNoteId = [
   param('id')
-    .isInt({ min: 1 })
+    .isUUID()
     .withMessage('Invalid note ID'),
   
   validate

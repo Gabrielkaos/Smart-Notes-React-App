@@ -3,9 +3,11 @@ router = express.Router()
 
 const authMiddleWare = require("../middleware/auth")
 const {asyncHandler, AppError} = require("../middleware/errorHandler")
-const {dbAll, dbGet, dbRun} = require("../database/database")
+
 const logger = require("../utils/logger")
 const {validateNote, validateNoteId} = require("../middleware/validation")
+
+const Note = require("../models/Note")
 
 
 
@@ -16,10 +18,18 @@ router.use(authMiddleWare)
 router.get("/", asyncHandler(async (req, res)=>{
     const userId = req.user.userId
 
-    let query = "SELECT * FROM notes WHERE user_id = ? ORDER BY is_pinned DESC, created_at DESC"
-    const params = [userId]
+    // let query = "SELECT * FROM notes WHERE user_id = ? ORDER BY is_pinned DESC, created_at DESC"
+    // const params = [userId]
 
-    const notes = await dbAll(query, params)
+    const notes = await Note.findAll({
+      where:{userId},
+      order: [
+        ['is_pinned', 'DESC'],
+        ['created_at', 'DESC']
+      ]
+    })
+
+    // const notes = await dbAll(query, params)
     res.json({
         status:"success",
         results:notes.length,
@@ -31,10 +41,9 @@ router.get('/:id', validateNoteId, asyncHandler(async (req, res) => {
   const noteId = req.params.id
   const userId = req.user.userId
 
-  const note = await dbGet(
-    'SELECT * FROM notes WHERE id = ? AND user_id = ?',
-    [noteId, userId]
-  )
+  const note = await Note.findOne({
+    where:{id:noteId,userId}
+  })
 
   if (!note) {
     throw new AppError('Note not found', 404)
@@ -50,14 +59,11 @@ router.post('/', validateNote, asyncHandler(async (req, res) => {
   const { title, description} = req.body
   const userId = req.user.userId
 
-  const result = await dbRun(
-    `INSERT INTO notes (title, description, user_id) VALUES (?, ?, ?)`,
-    [
-      title,
-      description || '',
-      userId
-    ]
-  )
+  const note = await Note.create({
+    title,
+    description : description || '',
+    userId
+  })
 
   logger.info(`Note created by user ${userId}: ${title}`)
 
@@ -65,12 +71,7 @@ router.post('/', validateNote, asyncHandler(async (req, res) => {
     status: 'success',
     message: 'Note created successfully',
     data: {
-      note: {
-        id: result.id,
-        title,
-        description,
-        user_id: userId
-      }
+      note
     }
   })
 }))
@@ -82,51 +83,41 @@ router.put('/:id', [validateNoteId, validateNote], asyncHandler(async (req, res)
   const { title, description, is_pinned, is_archived, is_favorite } = req.body
 
   
-  const note = await dbGet(
-    'SELECT * FROM notes WHERE id = ? AND user_id = ?',
-    [noteId, userId]
+  const note = await Note.findOne(
+    {
+      where:{id:noteId,userId}
+    }
   )
 
   if (!note) {
     throw new AppError('Note not found', 404)
   }
 
-  logger.info(`Note Found:${noteId}`)
+  logger.info(`Update:Note Found:${noteId}`)
 
-  logger.info(`Updating Note:${noteId}`)
+  logger.info(`UPDATEPARAMS:${title},${description},${is_pinned},${is_archived},${is_favorite},`)
 
-  let query = `UPDATE notes 
-     SET title = ?, description = ?, version = ?, is_pinned = ?, is_archived = ?, is_favorite = ?`
+  logger.info(`Update:Updating Note:${noteId}`)
 
-  //update 'update_at' if its not just a toggle
-  if(title !== "no-title"){
-    query+=`, updated_at = CURRENT_TIMESTAMP`
+
+  if(title !== 'no-title'){
+    note.title = title
+    note.version = note.version + 1
   }
-  query+=` WHERE id = ?`
-  
-  await dbRun(
-    query,
-    [
-      title === "no-title" ? note.title:title,
-      description !== undefined ? description : note.description,
-      title === "no-title"?note.version:note.version+=1,
-      is_pinned !== undefined ? is_pinned : note.is_pinned,
-      is_archived !== undefined ? is_archived:note.is_archived,
-      is_favorite !== undefined ? is_favorite:note.is_favorite,
-      noteId
-    ]
-  )
+  if (description !== undefined) note.description = description
+  if (is_favorite !== undefined) note.isFavorite = is_favorite
+  if (is_archived !== undefined) note.isArchived = is_archived
+  if (is_pinned !== undefined) note.isPinned = is_pinned
 
-  logger.info(`Note ${noteId} updated by user ${userId} 
+  await note.save()
+
+  logger.info(`Update:Note ${noteId} updated by user ${userId} 
     `)
-
-  
-  const updatedNote = await dbGet('SELECT * FROM notes WHERE id = ?', [noteId])
 
   res.json({
     status: 'success',
     message: 'Note updated successfully',
-    data: { note: updatedNote }
+    data: { note }
   })
 }))
 
@@ -134,14 +125,15 @@ router.delete('/:id', validateNoteId, asyncHandler(async (req, res) => {
   const noteId = req.params.id
   const userId = req.user.userId
 
-  const result = await dbRun(
-    'DELETE FROM notes WHERE id = ? AND user_id = ?',
-    [noteId, userId]
-  )
+  const note = await Note.findOne({
+    where:{id:noteId,userId}
+  })
 
-  if (result.changes === 0) {
+  if (!note) {
     throw new AppError('Note not found', 404)
   }
+
+  await note.destroy()
 
   logger.info(`Note ${noteId} deleted by user ${userId}`)
 
