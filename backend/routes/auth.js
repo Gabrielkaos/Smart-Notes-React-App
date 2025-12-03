@@ -3,8 +3,8 @@ router = express.Router()
 
 const config = require("../config/config")
 const logger = require("../utils/logger")
-const User = require("../models/User")
-const bcrypt = require("bcryptjs")
+const {User} = require("../models/index")
+
 const jwt = require("jsonwebtoken")
 const {asyncHandler, AppError} = require("../middleware/errorHandler")
 const { validateRegister, validateLogin } = require('../middleware/validation')

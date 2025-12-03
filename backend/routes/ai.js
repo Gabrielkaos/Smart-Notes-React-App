@@ -1,11 +1,8 @@
 const express = require('express')
-const { dbAll } = require('../database/database')
 const authMiddleware = require('../middleware/auth')
 const { asyncHandler, AppError } = require('../middleware/errorHandler')
 const aiService = require('../services/aiServices')
-const logger = require('../utils/logger')
 const {Note} = require("../models/Note")
-const { Op } = require('sequelize')
 
 const router = express.Router()
 

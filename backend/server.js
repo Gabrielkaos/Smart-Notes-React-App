@@ -29,9 +29,6 @@ app.use(cors({
 app.use(express.json({limit:"10mb"}))
 app.use(express.urlencoded({limit:"10mb",extended:true}))
 
-//data
-// app.use(mongoSanitize)
-// app.use(xss)
 
 
 app.use((req, res, next) => {

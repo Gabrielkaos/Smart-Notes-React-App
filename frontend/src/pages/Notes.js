@@ -296,7 +296,7 @@ const Notes = () => {
                             <div className="dates-div">
                                 <div className="note-actions-date">
                                     <p className="date-item">
-                                    Last Update: {new Date(note.updated_at).toLocaleString("en-US", {
+                                    Last Update: {new Date(note.updatedAt).toLocaleString("en-US", {
                                         month: "short",
                                         day: "numeric",
                                         year: "numeric",
@@ -305,7 +305,7 @@ const Notes = () => {
                                     })}
                                 </p>
                                 <p className="date-item">
-                                    Created at: {new Date(note.created_at).toLocaleString("en-US", {
+                                    Created at: {new Date(note.createdAt).toLocaleString("en-US", {
                                         month: "short",
                                         day: "numeric",
                                         year: "numeric",

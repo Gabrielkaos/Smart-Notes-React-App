@@ -7,7 +7,7 @@ const {asyncHandler, AppError} = require("../middleware/errorHandler")
 const logger = require("../utils/logger")
 const {validateNote, validateNoteId} = require("../middleware/validation")
 
-const Note = require("../models/Note")
+const {Note} = require("../models/index")
 
 
 
